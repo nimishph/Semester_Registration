@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Semester Registration</string>
+    <string name="onBackPressMessage">You are not allowed to go back at this stage !</string>
+    <string name="onEmptyFieldMessage">Empty fields are not allowed !</string>
+    <string name="onSuccessfulRegistration">Congratulations! You have been successfully registered.</string>
+    <string name="onUnsuccessfulRegistration">Sorry! You need to pay the fees first to move ahead and register successfully.</string>
+</resources>
