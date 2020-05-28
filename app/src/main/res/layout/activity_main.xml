@@ -7,6 +7,34 @@
     android:background="@drawable/loginbackgorund"
     tools:context=".MainActivity">
 
+    <LinearLayout
+        android:id="@+id/passwordPolicy"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:background="#AAFFFFFF"
+        android:clickable="true"
+        android:orientation="vertical"
+        android:padding="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/passwordEditText">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/policy_expand"
+            android:textColor="@color/blue"
+            android:textStyle="italic" />
+
+        <TextView
+            android:id="@+id/passwordPolicyTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/password_policy"
+            android:visibility="gone" />
+
+    </LinearLayout>
     <AutoCompleteTextView
         android:id="@+id/emailEditText"
         android:layout_width="0dp"
@@ -67,7 +95,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/loading" />
+        app:layout_constraintTop_toBottomOf="@+id/spinner" />
 
     <ProgressBar
         android:id="@+id/loading"
@@ -94,7 +122,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/passwordEditText" />
+        app:layout_constraintTop_toBottomOf="@+id/passwordPolicy" />
 
     <ImageView
         android:id="@+id/homeTitleView"

@@ -3,8 +3,8 @@ package com.example.semesterregistration;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -13,6 +13,7 @@ import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Switch;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -21,7 +22,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import java.util.ArrayList;
 import java.util.Calendar;
 
-import static com.example.semesterregistration.StudentActivity.imageView2;
 import static com.example.semesterregistration.StudentActivity.istask2completed;
 import static com.example.semesterregistration.StudentActivity.studentDetails;
 import static java.util.Arrays.asList;
@@ -34,8 +34,10 @@ public class AcademicInfo extends AppCompatActivity {
     Switch backlogSwitch;
 
     String branch;
-    static int semester;
+    int semester;
     String backlog = "No";
+
+    SharedPreferences sharedPreferences;
 
     @Override
     public void onBackPressed() {
@@ -43,8 +45,18 @@ public class AcademicInfo extends AppCompatActivity {
     }
 
     public String generateID() {
-        String ID = "BT" + String.valueOf(Calendar.getInstance().get(Calendar.YEAR)).substring(2) + branch + "001";
-        return ID;
+        int prev_id_number = sharedPreferences.getInt("id", 0);
+        prev_id_number += 1;
+        String current_id_number = String.valueOf(prev_id_number);
+
+        if (current_id_number.length() == 1)
+            current_id_number = "00" + current_id_number;
+        else if (current_id_number.length() == 2)
+            current_id_number = "0" + current_id_number;
+
+        sharedPreferences.edit().putInt("id", prev_id_number).apply();
+
+        return "BT" + String.valueOf(Calendar.getInstance().get(Calendar.YEAR)).substring(2) + branch + current_id_number;
     }
 
     public void onNextClick(View view) {
@@ -53,6 +65,7 @@ public class AcademicInfo extends AppCompatActivity {
 
             studentDetails.put("branch", branch);
             studentDetails.put("backlog", backlog);
+            studentDetails.put("semester", String.valueOf(semester));
 
             if (semester == 1) {
                 studentDetails.put("id", generateID());
@@ -64,6 +77,11 @@ public class AcademicInfo extends AppCompatActivity {
 
             SharedPreferences sharedPreferences = getSharedPreferences("com.example.semesterregistration", Context.MODE_PRIVATE);
             sharedPreferences.edit().putBoolean("task2", istask2completed).apply();
+            try {
+                sharedPreferences.edit().putString("studentDetails", ObjectSerializer.serialize(studentDetails)).apply();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
 
             Intent intent = new Intent(this, FeesStatus.class);
             startActivity(intent);
@@ -77,7 +95,9 @@ public class AcademicInfo extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.academic_info);
 
+        sharedPreferences = this.getSharedPreferences("com.example.semesterregistration", MODE_PRIVATE);
         semesters = findViewById(R.id.semesterSelector);
+        final TextView enrollmentET = findViewById(R.id.enrollmentIDET);
         enrollmentIdView  = findViewById(R.id.enrollmentIdView);
         cseBox = findViewById(R.id.cseCheckBox);
         eceBox = findViewById(R.id.eceCheckBox);
@@ -92,10 +112,12 @@ public class AcademicInfo extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 if (position > 0) {
                     if (position == 1) {
+                        enrollmentET.setTextColor(Color.parseColor("#81000000"));
                         enrollmentIdView.setText("");
                         enrollmentIdView.setEnabled(false);
                         backlogSwitch.setEnabled(false);
                     } else {
+                        enrollmentET.setTextColor(Color.parseColor("#000000"));
                         enrollmentIdView.setEnabled(true);
                         backlogSwitch.setEnabled(true);
                     }

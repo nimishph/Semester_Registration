@@ -9,13 +9,42 @@
         android:roundIcon="@drawable/student"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".resultActivity" android:configChanges="orientation" android:screenOrientation="portrait"/>
-        <activity android:name=".CourseSelection" android:configChanges="orientation" android:screenOrientation="portrait"/>
-        <activity android:name=".AcademicInfo" android:configChanges="orientation" android:screenOrientation="portrait"/>
-        <activity android:name=".FeesStatus" android:configChanges="orientation" android:screenOrientation="portrait"/>
-        <activity android:name=".PersonalInfo" android:configChanges="orientation" android:screenOrientation="portrait"/>
-        <activity android:name=".StudentActivity" android:configChanges="orientation" android:screenOrientation="portrait"/>
-        <activity android:name=".MainActivity" android:configChanges="orientation" android:screenOrientation="portrait">
+        <activity
+            android:name=".ErrorPageActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".resultActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".CourseSelection"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".AcademicInfo"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".FeesStatus"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".PersonalInfo"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".StudentActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".FacultyActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".MainActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

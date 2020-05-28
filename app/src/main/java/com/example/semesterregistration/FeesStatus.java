@@ -17,6 +17,8 @@ import static com.example.semesterregistration.StudentActivity.studentDetails;
 
 public class FeesStatus extends AppCompatActivity {
 
+    private final String TAG = "FeesStatusActivity";
+
     CheckBox paidBox, xtensionBox, unpaidBox;
 
     String feeStatus;
@@ -37,6 +39,18 @@ public class FeesStatus extends AppCompatActivity {
                 SharedPreferences sharedPreferences = getSharedPreferences("com.example.semesterregistration", Context.MODE_PRIVATE);
                 sharedPreferences.edit().putBoolean("task3", istask3completed).apply();
                 sharedPreferences.edit().putBoolean("feesPaid",true).apply();
+                try {
+                    sharedPreferences.edit().putString("studentDetails", ObjectSerializer.serialize(studentDetails)).apply();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+//                //Logs Start
+//                Log.i("task1 - " + TAG, istask1completed.toString());
+//                Log.i("task2 - " + TAG, istask2completed.toString());
+//                Log.i("task3 - " + TAG, istask3completed.toString());
+//                Log.i("task4 - " + TAG, istask4completed.toString());
+//                //Logs Finish
 
                 Intent intent = new Intent(this, CourseSelection.class);
                 startActivity(intent);
@@ -59,14 +73,11 @@ public class FeesStatus extends AppCompatActivity {
         xtensionBox = findViewById(R.id.xtensionCheckBox);
         unpaidBox = findViewById(R.id.unpaidCheckBox);
 
-        paidBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked) {
-                    feeStatus = "Paid";
-                    xtensionBox.setChecked(false);
-                    unpaidBox.setChecked(false);
-                }
+        paidBox.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            if (isChecked) {
+                feeStatus = "Paid";
+                xtensionBox.setChecked(false);
+                unpaidBox.setChecked(false);
             }
         });
 

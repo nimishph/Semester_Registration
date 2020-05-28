@@ -62,14 +62,14 @@
         app:layout_constraintTop_toBottomOf="@+id/titleView3" />
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/enrollmentIDET"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
         android:layout_marginTop="70dp"
         android:fontFamily="@font/inconsolata"
         android:text="Enrollment ID"
-        android:textColor="#000000"
+        android:textColor="#81000000"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
@@ -85,7 +85,7 @@
         android:textColor="#000000"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+        app:layout_constraintTop_toBottomOf="@+id/enrollmentIDET" />
 
     <EditText
         android:id="@+id/enrollmentIdView"
@@ -94,8 +94,10 @@
         android:layout_marginStart="24dp"
         android:layout_marginTop="55dp"
         android:ems="10"
+        android:enabled="false"
         android:inputType="textPersonName"
-        app:layout_constraintStart_toEndOf="@+id/textView4"
+        android:textAllCaps="true"
+        app:layout_constraintStart_toEndOf="@+id/enrollmentIDET"
         app:layout_constraintTop_toBottomOf="@+id/semesterSelector" />
 
     <TextView
