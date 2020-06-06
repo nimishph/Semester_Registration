@@ -5,6 +5,7 @@
         android:id="@+id/logout"
         android:icon="@drawable/logout"
         android:title="Logout"
+        android:tooltipText="Logout"
         app:showAsAction="always" />
     <item
         android:id="@+id/courses"

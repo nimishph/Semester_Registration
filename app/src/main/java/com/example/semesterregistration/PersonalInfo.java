@@ -30,7 +30,7 @@ public class PersonalInfo extends AppCompatActivity implements View.OnKeyListene
     DatePickerDialog.OnDateSetListener date;
 
     private void updateDOB() {
-        String myFormat = "MM/dd/yyyy"; //In which you need put here
+        String myFormat = "dd/MM/yyyy"; //In which you need put here
         SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.getDefault());
 
         dob.setText(sdf.format(myCalendar.getTime()));
@@ -80,6 +80,7 @@ public class PersonalInfo extends AppCompatActivity implements View.OnKeyListene
         setTitle("Semester Registration Form");
 
         myCalendar = Calendar.getInstance();
+
         date = (view, year, month, dayOfMonth) -> {
             myCalendar.set(Calendar.YEAR, year);
             myCalendar.set(Calendar.MONTH, month);
@@ -88,7 +89,6 @@ public class PersonalInfo extends AppCompatActivity implements View.OnKeyListene
         };
 
         datePickerDialog = new DatePickerDialog(PersonalInfo.this, date, myCalendar.get(Calendar.YEAR), myCalendar.get(Calendar.MONTH), myCalendar.get(Calendar.DAY_OF_MONTH));
-
 
         myCalendar.add(Calendar.YEAR,-24);
         datePickerDialog.getDatePicker().setMinDate(myCalendar.getTimeInMillis());
@@ -109,8 +109,6 @@ public class PersonalInfo extends AppCompatActivity implements View.OnKeyListene
         email.setEnabled(false);
 
         dob.setOnClickListener(v -> datePickerDialog.show());
-
-
     }
 
     @Override
